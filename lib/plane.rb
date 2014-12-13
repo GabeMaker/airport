@@ -1,8 +1,16 @@
 class Plane
 
-def flying?
-	true
+	def initialize
+		@flying = true
+	end
 
-end
+	def flying?
+		if @flying == true
+			return true
+		else
+			return false
+		end
+		
+	end
 
 end
