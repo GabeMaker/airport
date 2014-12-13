@@ -61,8 +61,6 @@ describe Plane do
   let(:plane) { Plane.new }
 
   it 'has a flying status when created' do
-      expect(plane).to be_flying
-      expect(plane.status).to eq("flying")
 
   end
 
