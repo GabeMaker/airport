@@ -15,7 +15,9 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
-
+      plane = Plane.new
+      plane.land
+      expect(plane.status).to eq("landed")
     end
 
     it 'a plane can take off' do
