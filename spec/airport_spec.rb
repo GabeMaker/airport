@@ -15,9 +15,7 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
-      plane = Plane.new
-      plane.land
-      expect(plane.status).to eq("landed")
+    
     end
 
     it 'a plane can take off' do
@@ -63,6 +61,8 @@ describe Plane do
   let(:plane) { Plane.new }
 
   it 'has a flying status when created' do
+      expect(plane).to be_flying
+      expect(plane.status).to eq("flying")
 
   end
 

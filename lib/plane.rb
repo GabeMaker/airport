@@ -1,7 +1,15 @@
 class Plane
-	def land
+
+	def flying?
+		true
 	end
+
 	def status
-	"landed"
+		if flying? == true
+			"flying"
+		else
+			"landed"
+		end
 	end
+
 end
