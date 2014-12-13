@@ -1,5 +1,3 @@
-airport_spec.rb
-
 require 'airport'
 require 'plane'
 
