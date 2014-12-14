@@ -1,13 +1,21 @@
+require 'weather.rb'
+
 class Airport
+
+	include Weather
 
 	def initialize
 		@planes = []
 	end
 
 	def land(plane)
-		raise 'Can\'t land plane, Airport is full' if full?
-		plane.land!
-		@planes << plane
+		if sunny? == false
+			raise 'Can\'t take off, Airport is stormy'
+		else
+			raise 'Can\'t land plane, Airport is full' if full?
+			plane.land!
+			@planes << plane
+		end
 	end
 
 	def take_off(plane)

@@ -15,6 +15,7 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
+      allow(airport).to receive(:sunny?) { true }
       plane = Plane.new
       airport.land(plane)
       expect(plane).not_to be_flying
@@ -34,6 +35,7 @@ describe Airport do
 
     it 'should be able to count how many planes are landed' do
     #assuming airport starts empty
+      allow(airport).to receive(:sunny?) { true }
       expect(airport.plane_count).to eq(0)
       plane = Plane.new
       airport.land(plane)
@@ -47,6 +49,7 @@ describe Airport do
     end
 
     it 'should be able to count how many planes are landed v.2' do
+      allow(airport).to receive(:sunny?) { true }
       expect(airport.plane_count).to eq(0)
       plane1 = Plane.new
       plane2 = Plane.new
@@ -64,6 +67,7 @@ describe Airport do
 
     it 'should be possible to check if airport is full' do
       #assuming capacity is 10 planes
+      allow(airport).to receive(:sunny?) { true }
       expect(airport).not_to be_full
       9.times { airport.land(Plane.new) }
       plane = Plane.new
@@ -74,6 +78,7 @@ describe Airport do
     end
 
     it 'a plane cannot land if the airport is full' do
+      allow(airport).to receive(:sunny?) { true }
       10.times { airport.land(Plane.new) }
       expect(airport).to be_full
       newplane = Plane.new
@@ -95,8 +100,11 @@ describe Airport do
       end
 
       it 'a plane cannot land in the middle of a storm' do
-
+      plane = Plane.new
+      allow(airport).to receive(:sunny?) { false }
+      expect(lambda { airport.land(plane)}).to raise_error(RuntimeError, 'Can\'t take off, Airport is stormy')
       end
+    
     end
   end
 end
