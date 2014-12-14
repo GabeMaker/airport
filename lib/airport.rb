@@ -10,7 +10,7 @@ class Airport
 
 	def land(plane)
 		if sunny? == false
-			raise 'Can\'t take off, Airport is stormy'
+			raise 'Can\'t land, Airport is stormy'
 		else
 			raise 'Can\'t land plane, Airport is full' if full?
 			plane.land!
@@ -19,8 +19,12 @@ class Airport
 	end
 
 	def take_off(plane)
-		plane.take_off!
-		@planes.delete(plane)
+		if sunny? == false
+			raise 'Can\'t take off, Airport is stormy'
+		else
+			plane.take_off!
+			@planes.delete(plane)
+		end
 	end 
 
 	def plane_count

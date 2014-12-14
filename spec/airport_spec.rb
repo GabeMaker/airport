@@ -96,13 +96,16 @@ describe Airport do
     context 'weather conditions' do
 
       it 'a plane cannot take off when there is a storm brewing' do
+        plane = Plane.new
+        allow(airport).to receive(:sunny?) { false }
+        expect(lambda { airport.take_off(plane)}).to raise_error(RuntimeError, 'Can\'t take off, Airport is stormy')
 
       end
 
       it 'a plane cannot land in the middle of a storm' do
-      plane = Plane.new
-      allow(airport).to receive(:sunny?) { false }
-      expect(lambda { airport.land(plane)}).to raise_error(RuntimeError, 'Can\'t take off, Airport is stormy')
+        plane = Plane.new
+        allow(airport).to receive(:sunny?) { false }
+        expect(lambda { airport.land(plane)}).to raise_error(RuntimeError, 'Can\'t land, Airport is stormy')
       end
     
     end
