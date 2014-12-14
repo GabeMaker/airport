@@ -66,9 +66,9 @@ describe Airport do
 
     it 'should be possible to check if airport is full' do
     #assuming capacity is 10 planes
-    # expect(airport).not_to be_full
-    # 10.times { airport.land(Plane.new) }
-    # expect(airport).to be_full
+    expect(airport).not_to be_full
+    10.times { airport.land(Plane.new) }
+    expect(airport).to be_full
 
     end
 

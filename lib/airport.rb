@@ -19,6 +19,11 @@ class Airport
 	end
 
 	def full?
+		if plane_count <= 9
+			false
+		else
+			true
+		end
 	end
 
 end
