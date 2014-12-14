@@ -10,8 +10,16 @@ class Plane
 		else
 			return false
 		end
-		
 	end
+
+	def status
+		if @flying == true
+			"flying"
+		else
+			"landed"
+		end
+	end
+
 
 	def land!
 		@flying = false

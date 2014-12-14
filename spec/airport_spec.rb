@@ -117,11 +117,14 @@ describe Plane do
 
   it 'has a flying status when created' do
     expect(plane).to be_flying
-
+    expect(plane.status).to eq ("flying")
   end
 
   it 'has a flying status when in the air' do
-
+    plane.land!
+    expect(plane).not_to be_flying
+    plane.take_off!
+    expect(plane.status).to eq("flying")
   end
 
   it 'can take off' do
