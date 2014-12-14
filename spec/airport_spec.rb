@@ -15,15 +15,32 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
-    
+      plane = Plane.new
+      airport.land(plane)
+      expect(plane).not_to be_flying
     end
 
-    it 'a plane can take off' do
+    # it 'a plane can land (and be at the airport)'
 
+    it 'a plane can take off' do
+      plane = Plane.new
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(plane).to be_flying
     end
   end
 
   context 'traffic control' do
+
+    it 'should be able to count how many planes are landed'
+
+    it 'should be possible to check if airport is full' do
+    #assuming capacity is 10 planes and airport starts empty
+    # expect(airport).not_to be_full
+    # 10.times { airport.land(Plane.new) }
+    # expect(airport).to be_full
+
+    end
 
     it 'a plane cannot land if the airport is full' do
 
