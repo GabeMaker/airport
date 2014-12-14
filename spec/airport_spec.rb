@@ -62,17 +62,25 @@ describe Airport do
       expect(airport.plane_count).to eq(0)
     end
 
-# working_bike, broken_bike = Bike.new, Bike.new
-
     it 'should be possible to check if airport is full' do
-    #assuming capacity is 10 planes
-    expect(airport).not_to be_full
-    10.times { airport.land(Plane.new) }
-    expect(airport).to be_full
-
+      #assuming capacity is 10 planes
+      expect(airport).not_to be_full
+      9.times { airport.land(Plane.new) }
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport).to be_full
+      airport.take_off(plane)
+      expect(airport).not_to be_full
     end
 
     it 'a plane cannot land if the airport is full' do
+      10.times { airport.land(Plane.new) }
+      expect(airport).to be_full
+      newplane = Plane.new
+      expect(lambda { airport.land(newplane)}).to raise_error(RuntimeError, 'Can\'t land plane, Airport is full')
+
+
+  # expect(lambda { holder.dock(bike)}).to raise_error(RuntimeError, 'No room for bikes')
 
     end
 
