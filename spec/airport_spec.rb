@@ -32,10 +32,40 @@ describe Airport do
 
   context 'traffic control' do
 
-    it 'should be able to count how many planes are landed'
+    it 'should be able to count how many planes are landed' do
+    #assuming airport starts empty
+      expect(airport.plane_count).to eq(0)
+      plane = Plane.new
+      airport.land(plane)
+      expect(airport.plane_count).to eq(1)
+      airport.land(Plane.new)
+      expect(airport.plane_count).to eq(2)
+      5.times { airport.land(Plane.new) }
+      expect(airport.plane_count).to eq(7)
+      airport.take_off(plane)
+      expect(airport.plane_count).to eq(6)
+    end
+
+    it 'should be able to count how many planes are landed v.2' do
+      expect(airport.plane_count).to eq(0)
+      plane1 = Plane.new
+      plane2 = Plane.new
+      plane3 = Plane.new
+      airport.land(plane3)
+      airport.land(plane2)
+      expect(airport.plane_count).to eq(2)
+      airport.land(plane1)
+      expect(airport.plane_count).to eq(3)
+      airport.take_off(plane1)
+      airport.take_off(plane2)
+      airport.take_off(plane3)
+      expect(airport.plane_count).to eq(0)
+    end
+
+# working_bike, broken_bike = Bike.new, Bike.new
 
     it 'should be possible to check if airport is full' do
-    #assuming capacity is 10 planes and airport starts empty
+    #assuming capacity is 10 planes
     # expect(airport).not_to be_full
     # 10.times { airport.land(Plane.new) }
     # expect(airport).to be_full
