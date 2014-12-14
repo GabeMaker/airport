@@ -78,10 +78,6 @@ describe Airport do
       expect(airport).to be_full
       newplane = Plane.new
       expect(lambda { airport.land(newplane)}).to raise_error(RuntimeError, 'Can\'t land plane, Airport is full')
-
-
-  # expect(lambda { holder.dock(bike)}).to raise_error(RuntimeError, 'No room for bikes')
-
     end
 
     # Include a weather condition using a module.
