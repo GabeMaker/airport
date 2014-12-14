@@ -128,12 +128,18 @@ describe Plane do
   end
 
   it 'can take off' do
-
+    plane.land!
+    plane.take_off!
+    expect(plane).to be_flying
   end
 
   it 'changes its status to flying after taking of' do
-
+    plane.land!
+    expect(plane.status).to eq("landed")
+    plane.take_off!
+    expect(plane.status).to eq("flying")
   end
+
 end
 
 # grand final
