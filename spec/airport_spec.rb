@@ -100,6 +100,8 @@ describe Airport do
         allow(airport).to receive(:sunny?) { false }
         expect(lambda { airport.take_off(plane)}).to raise_error(RuntimeError, 'Can\'t take off, Airport is stormy')
 
+# DO I NEED TO TEST WHAT HAPPENS IF IT IS SUNNY HERE OR IS THAT COVERED IN OTHER TESTS?
+
       end
 
       it 'a plane cannot land in the middle of a storm' do
@@ -155,9 +157,49 @@ end
 # Check when all the planes have landed that they have the right status "landed"
 # Once all the planes are in the air again, check that they have the status of flying!
 
+# Do I need to write code to ensure that when airport is full, all planes take off? Don't know how to do that for planes created without variables (named planes)
+
 describe "The grand finale (last spec)" do
 
   it 'all planes can land and all planes can take off' do
+    airport = Airport.new
+    plane0 = Plane.new
+    plane1 = Plane.new
+    plane2 = Plane.new
+    plane3 = Plane.new
+    plane4 = Plane.new
+    plane5 = Plane.new
+    allow(airport).to receive(:sunny?) { true }
+    airport.land(plane0)
+    airport.land(plane1)
+    airport.land(plane2)
+    airport.land(plane3)
+    airport.land(plane4)
+    airport.land(plane5)
+    expect(plane0.status).to eq("landed")
+    expect(plane1.status).to eq("landed")
+    expect(plane2.status).to eq("landed")
+    expect(plane3.status).to eq("landed")
+    expect(plane4.status).to eq("landed")
+    expect(plane5.status).to eq("landed")
+    4.times { airport.land(Plane.new) }
+    expect(airport).to be_full
+    allow(airport).to receive(:sunny?) { true }
+    airport.take_off(plane0)
+    airport.take_off(plane1)
+    airport.take_off(plane2)
+    airport.take_off(plane3)
+    airport.take_off(plane4)
+    airport.take_off(plane5)
 
+# there are still 4 planes at the airport? do they need to fly off too?
+# could do this by creating them in longform
+
+    expect(plane0.status).to eq("flying")
+    expect(plane1.status).to eq("flying")
+    expect(plane2.status).to eq("flying")
+    expect(plane3.status).to eq("flying")
+    expect(plane4.status).to eq("flying")
+    expect(plane5.status).to eq("flying")
   end
 end
