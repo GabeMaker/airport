@@ -24,6 +24,7 @@ describe Airport do
     # it 'a plane can land (and be at the airport)'
 
     it 'a plane can take off' do
+      allow(airport).to receive(:sunny?) { true }
       plane = Plane.new
       airport.land(plane)
       airport.take_off(plane)
