@@ -5,17 +5,25 @@ class Airport
 
   def initialize
     @planes   = []
-    @weather  = set_weather_randomly
+    @weather  = :sunny
   end
 
   def land(incoming_plane)
-    incoming_plane.land
-    planes << incoming_plane
+    if weather != :stormy  
+      incoming_plane.land
+      planes << incoming_plane
+    else
+      raise "planes can't land when it's stormy"
+    end
   end
 
   def take_off(outgoing_plane)
-    outgoing_plane.take_off
-    planes.delete(outgoing_plane)
+    if weather != :stormy
+      outgoing_plane.take_off
+      planes.delete(outgoing_plane)
+    else
+      raise "planes can't take off when it's stormy"
+    end
   end
 
   def set_weather_randomly
