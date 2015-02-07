@@ -18,4 +18,12 @@ class Airport
     @planes.delete(outgoing_plane)
   end
 
+  def weather
+    @weather ||= :sunny 
+  end
+
+  def weather=(weather)
+    @weather = weather
+  end
+
 end
