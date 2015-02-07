@@ -64,11 +64,19 @@ describe Airport do
 
     it 'should be stormy 20% of the time' do
     # do not know how to test this here - played with it in irb:
-    # airport = Airport.new
-    # 1000000.times {  array << airport.random_weather}
-    # array.count :stormy aprrox == 20000
+    # airport  = Airport.new
+    # weathers = Array.new
+    # 1000000.times { weathers << airport.set_weather_randomly}
+    # weathers.count :stormy aprrox == 20000
+
+    # we expect this test to fail about one in five times:
+    # expect(airport.weather).to eq :sunny
     end
 
+    it 'should not be possible for a plane to take off when it is stormy' do
+
+    end
+  
   end
 
 end  

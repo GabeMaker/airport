@@ -1,37 +1,30 @@
 class Airport
 
+  attr_reader :planes
+  attr_accessor :weather
+
   def initialize
     @planes   = []
-    @weather  = random_weather
-  end
-
-  def planes
-    @planes ||= []
+    @weather  = set_weather_randomly
   end
 
   def land(incoming_plane)
     incoming_plane.land
-    @planes << incoming_plane
+    planes << incoming_plane
   end
 
   def take_off(outgoing_plane)
     outgoing_plane.take_off
-    @planes.delete(outgoing_plane)
+    planes.delete(outgoing_plane)
   end
 
-  def weather
-    @weather
-  end
-
-  def random_weather
+  def set_weather_randomly
     if rand(5) == 0
-      @weather = :stormy
+      random_weather = :stormy
     else
-      @weather = :sunny
+      random_weather = :sunny
     end
-    weather
+    self.weather = random_weather
   end
-
-
 
 end
