@@ -11,6 +11,7 @@ class Airport
 
   def take_off(outgoing_plane)
     outgoing_plane.take_off
+    @planes = []
   end
 
 end
