@@ -10,4 +10,8 @@ class Plane
     self.flying = true 
   end
 
+  def land
+    self.flying = false
+  end
+
 end

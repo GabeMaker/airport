@@ -13,4 +13,10 @@ describe Plane do
     expect(plane.flying).to eq true
   end
 
+  it 'should be able to land' do
+    plane.take_off
+    plane.land
+    expect(plane.flying).to eq false
+  end
+
 end
