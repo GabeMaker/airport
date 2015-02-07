@@ -1,7 +1,8 @@
 class Airport
 
   def initialize
-    @planes = []
+    @planes   = []
+    @weather  = random_weather
   end
 
   def planes
@@ -19,11 +20,18 @@ class Airport
   end
 
   def weather
-    @weather ||= :sunny 
+    @weather
   end
 
-  def weather=(weather)
-    @weather = weather
+  def random_weather
+    if rand(5) == 0
+      @weather = :stormy
+    else
+      @weather = :sunny
+    end
+    weather
   end
+
+
 
 end

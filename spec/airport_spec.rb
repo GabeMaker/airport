@@ -62,19 +62,11 @@ describe Airport do
 
   context "Weather" do
 
-    attr_writer :weather
-
-    def make_it(weather_condition)
-      airport.weather = weather_condition
-    end
-
-    it 'should be sunny by default' do
-      expect(airport.weather).to eq :sunny
-    end
-
-    it 'should know when it is stormy' do
-      make_it(:stormy)
-      expect(airport.weather).to eq :stormy
+    it 'should be stormy 20% of the time' do
+    # do not know how to test this here - played with it in irb:
+    # airport = Airport.new
+    # 1000000.times {  array << airport.random_weather}
+    # array.count :stormy aprrox == 20000
     end
 
   end
