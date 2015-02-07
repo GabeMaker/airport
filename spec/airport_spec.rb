@@ -3,16 +3,29 @@ require 'airport'
 describe Airport do
   
   let (:airport) { Airport.new }
+  let (:plane) { double :plane, land: nil } # is this 'nil' OK / convention - added to get past 'double received unexpected?
 
   it 'should have no planes landed on creation' do
     expect(airport.planes).to eq []
   end
 
   it 'should be able to tell a plane to land at it' do
-    incoming_plane = double :plane
-    expect(incoming_plane).to receive(:land)
-    airport.land(incoming_plane)
+    expect(plane).to receive(:land)
+    airport.land(plane)
   end
+
+  it 'should know a plane has landed at it' do
+    airport.land(plane)
+    expect(airport.planes).to eq [plane]
+  end
+
+  it 'should be able to tell a plane to take off from it' do
+    airport.land(plane)
+    expect(plane).to receive(:take_off)
+    airport.take_off(plane)
+  end
+
+end  
 
 
 
@@ -30,7 +43,3 @@ describe Airport do
   ## 'should not be able to tell a non flying plane to land'
   ## this should probably be the responsibility of the plane:
   ## e.g. 'should not be able to land if not flying'
-
-
-
-end
