@@ -3,7 +3,8 @@ require 'airport'
 describe Airport do
   
   let (:airport) { Airport.new }
-  let (:plane) { double :plane, land: nil, take_off: nil} # is this 'nil' OK / convention - added to get past 'double received unexpected?
+  let (:plane)  { double :plane, land: nil, take_off: nil} # is this 'nil' OK / convention - added to get past 'double received unexpected?
+  let (:plane2) { double :plane2, land: nil }
 
   it 'should have no planes landed on creation' do
     expect(airport.planes).to eq []
@@ -29,6 +30,12 @@ describe Airport do
     airport.land(plane)
     airport.take_off(plane)
     expect(airport.planes).to eq []
+  end
+
+  it 'should be able to land two planes' do
+    airport.land(plane)
+    airport.land(plane2)
+    expect(airport.planes).to eq [plane, plane2]
   end
 
 end  
