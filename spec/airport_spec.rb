@@ -58,6 +58,11 @@ describe Airport do
       expect(airport.planes).to eq [plane2]
     end    
 
+    it 'a plane cannot land if the airport is full' do
+      10.times { airport.land(plane) }
+      expect{airport.land(plane)}.to raise_error "planes can't land when airport is full"
+    end
+
   end
 
   context "Weather" do
@@ -81,6 +86,7 @@ describe Airport do
     end
 
     it 'should not be possible for a plane to land when it is stormy' do
+      airport.land(plane)
       airport.take_off(plane)
       airport.helper_make_it(:stormy)
       expect{airport.land(plane)}.to raise_error "planes can't land when it's stormy"      
@@ -104,3 +110,5 @@ end
   ## 'should not be able to tell a non flying plane to land'
   ## this should probably be the responsibility of the plane:
   ## e.g. 'should not be able to land if not flying'
+
+  ## should not be able to tell anything to a plane not at the airport 
