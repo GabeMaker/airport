@@ -5,7 +5,7 @@ class Airport
 
   def initialize(capacity=10)
     @planes   = []
-    @weather  = :sunny
+    @weather  = set_weather_randomly
     @capacity = capacity
   end
 

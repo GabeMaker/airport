@@ -9,32 +9,38 @@ describe Airport do
   context "Take off, landing and tracking planes" do
 
     it 'should have no planes landed on creation' do
+      allow(airport).to receive(:weather) { :sunny }
       expect(airport.planes).to eq []
     end
 
     it 'should be able to tell a plane to land at it' do
+      allow(airport).to receive(:weather) { :sunny }
       expect(plane).to receive(:land)
       airport.land(plane)
     end
 
     it 'should know a plane has landed at it' do
+      allow(airport).to receive(:weather) { :sunny }
       airport.land(plane)
       expect(airport.planes).to eq [plane]
     end
 
     it 'should be able to tell a plane to take off from it' do
+      allow(airport).to receive(:weather) { :sunny }
       airport.land(plane)
       expect(plane).to receive(:take_off)
       airport.take_off(plane)
     end
 
     it 'should know a plane has taken off from it' do
+      allow(airport).to receive(:weather) { :sunny }
       airport.land(plane)
       airport.take_off(plane)
       expect(airport.planes).to eq []
     end
 
     it 'should be able to land two planes' do
+      allow(airport).to receive(:weather) { :sunny }
       airport.land(plane)
       airport.land(plane2)
       expect(airport.planes).to eq [plane, plane2]
@@ -44,6 +50,7 @@ describe Airport do
     # are you only meant to write failing tests?
     # (the tests are listed in the order they were created)
     it 'should let two planes take off' do
+      allow(airport).to receive(:weather) { :sunny }
       airport.land(plane)
       airport.land(plane2)
       airport.take_off(plane)
@@ -52,6 +59,7 @@ describe Airport do
     end
 
     it 'should let a plane take_off while others stay landed' do
+      allow(airport).to receive(:weather) { :sunny }
       airport.land plane
       airport.land plane2
       airport.take_off plane
@@ -59,12 +67,14 @@ describe Airport do
     end    
 
     it 'a plane cannot land if the airport is full' do
+      allow(airport).to receive(:weather) { :sunny }
       10.times { airport.land(plane) }
       expect{airport.land(plane)}.to raise_error "planes can't land when airport is full"
     end
 
     it 'can be created with a custom capacity' do
       tiny_airport = Airport.new(1)
+      allow(tiny_airport).to receive(:weather) { :sunny }
       tiny_airport.land(plane)
       expect{tiny_airport.land(plane)}.to raise_error "planes can't land when airport is full"
     end
@@ -94,15 +104,14 @@ describe Airport do
     end
 
     it 'should not be possible for a plane to land when it is stormy' do
-      airport.land(plane)
-      airport.take_off(plane)
-      airport.helper_make_it(:stormy)
+      allow(airport).to receive(:weather){:stormy}
       expect{airport.land(plane)}.to raise_error "planes can't land when it's stormy"      
     end
   
     it 'should not be possible for a plane to take off when it is stormy' do
+      allow(airport).to receive(:weather){:sunny}
       airport.land(plane)
-      airport.helper_make_it(:stormy)
+      allow(airport).to receive(:weather){:stormy}
       expect{airport.take_off(plane)}.to raise_error "planes can't take off when it's stormy"
     end
 
