@@ -83,7 +83,6 @@ describe Airport do
     it 'should not be possible for a plane to land when it is stormy' do
       airport.take_off(plane)
       airport.helper_make_it(:stormy)
-      expect(airport.weather).to eq :stormy
       expect{airport.land(plane)}.to raise_error "planes can't land when it's stormy"      
     end
   
