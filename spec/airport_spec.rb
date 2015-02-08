@@ -63,6 +63,14 @@ describe Airport do
       expect{airport.land(plane)}.to raise_error "planes can't land when airport is full"
     end
 
+    it 'can be created with a custom capacity' do
+      tiny_airport = Airport.new(1)
+      tiny_airport.land(plane)
+      expect{tiny_airport.land(plane)}.to raise_error "planes can't land when airport is full"
+    end
+
+
+
   end
 
   context "Weather" do
