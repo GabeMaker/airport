@@ -15,4 +15,8 @@ class Weather
     self.weather = random_weather
   end
 
+  def check
+    weather
+  end
+
 end

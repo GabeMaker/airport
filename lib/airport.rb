@@ -7,12 +7,12 @@ class Airport
 
   def initialize(capacity=10)
     @planes   = []
-    @weather  = Weather.new
+    @weather  = Weather.new.check
     @capacity = capacity
   end
 
   def land(incoming_plane)
-    if weather != :stormy
+    if weather == :sunny
       raise "planes can't land when airport is full" if planes.count >= capacity
       incoming_plane.land
       planes << incoming_plane
@@ -22,7 +22,7 @@ class Airport
   end
 
   def take_off(outgoing_plane)
-    if weather != :stormy
+    if weather == :sunny
       outgoing_plane.take_off
       planes.delete(outgoing_plane)
     else

@@ -16,7 +16,7 @@ describe Airport do
     end
 
     it 'should be able to tell a plane to land at it' do
-      allow(airport).to receive(:weather) { :sunny }
+      # allow(airport).to receive(:weather) { :sunny }
       expect(plane).to receive(:land)
       airport.land(plane)
     end
