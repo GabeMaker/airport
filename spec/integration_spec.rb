@@ -1,7 +1,7 @@
 require 'plane'
 require 'airport'
 
-describe "The grand finale (spec from challenge)" do
+describe "Grand finale (spec from challenge)" do
   
   it 'all planes can land and all planes can take off' do
     airport = Airport.new
