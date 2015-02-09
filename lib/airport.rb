@@ -12,7 +12,7 @@ class Airport
   end
 
   def land(incoming_plane)
-    if weather == :stormy
+    if weather != :stormy
       raise "planes can't land when airport is full" if planes.count >= capacity
       incoming_plane.land
       planes << incoming_plane
