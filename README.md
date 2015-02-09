@@ -6,6 +6,8 @@ Imagine you're writing software to control the flow of planes at an airport.
 The planes can land and take off provided that the weather is sunny.
 Occasionally it may be stormy, in which case no planes can land or take off.
 
+**In progress:**
+- have weather_class branch, attempting to move weather functionality to a class. At this stage it appears that using a module and including it in airport might be a better approach.
 
 **Current bugs**
 
@@ -26,8 +28,6 @@ Occasionally it may be stormy, in which case no planes can land or take off.
 
 
 **Further work to do**
-
-- clean up methods (landing and take off)
 
 - move weather into a class or module
 
