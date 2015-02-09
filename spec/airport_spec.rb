@@ -4,7 +4,7 @@ require 'plane'
 describe Airport do
   
   let (:airport) { Airport.new }
-  let (:plane)  { double :plane,  land: nil, take_off: nil } # is this 'nil' OK / convention - added to get past 'double received unexpected?
+  let (:plane)  { double :plane,  land: nil, take_off: nil } 
   let (:plane2) { double :plane2, land: nil, take_off: nil }
 
   context "Take off, landing and tracking planes" do
@@ -93,8 +93,3 @@ describe Airport do
   end
 
 end  
-
-# Note for refactoring:
-# ? need to change land(plane) to request_to_land(plane) in test suite (and the same for take_off)
-
-
