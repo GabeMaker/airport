@@ -1,16 +1,18 @@
+require_relative 'weather'
+
 class Airport
 
   attr_reader :planes, :capacity
-  attr_accessor :weather
+  attr_reader :weather
 
   def initialize(capacity=10)
     @planes   = []
-    @weather  = set_weather_randomly
+    @weather  = Weather.new
     @capacity = capacity
   end
 
   def land(incoming_plane)
-    if weather != :stormy
+    if weather == :stormy
       raise "planes can't land when airport is full" if planes.count >= capacity
       incoming_plane.land
       planes << incoming_plane
@@ -26,15 +28,6 @@ class Airport
     else
       raise "planes can't take off when it's stormy"
     end
-  end
-
-  def set_weather_randomly
-    if rand(5) == 0
-      random_weather = :stormy
-    else
-      random_weather = :sunny
-    end
-    self.weather = random_weather
   end
 
 end
