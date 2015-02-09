@@ -66,15 +66,15 @@ describe Airport do
 
     it 'a plane cannot land if the airport is full' do
       allow(airport).to receive(:weather) { :sunny }
-      10.times { airport.land(plane) }
-      expect{airport.land(plane)}.to raise_error "planes can't land when airport is full"
+      10.times { airport.request_to_land(plane) }
+      expect{airport.request_to_land(plane)}.to raise_error "planes can't land when airport is full"
     end
 
     it 'can be created with a custom capacity' do
       tiny_airport = Airport.new(1)
       allow(tiny_airport).to receive(:weather) { :sunny }
-      tiny_airport.land(plane)
-      expect{tiny_airport.land(plane)}.to raise_error "planes can't land when airport is full"
+      tiny_airport.request_to_land(plane)
+      expect{tiny_airport.request_to_land(plane)}.to raise_error "planes can't land when airport is full"
     end
   
   end
@@ -87,17 +87,19 @@ describe Airport do
 
     it 'should not be possible for a plane to land when it is stormy' do
       allow(airport).to receive(:weather){:stormy}
-      expect{airport.land(plane)}.to raise_error "planes can't land when it's stormy"      
+      expect{airport.request_to_land(plane)}.to raise_error "planes can't land when it's stormy"      
     end
   
     it 'should not be possible for a plane to take off when it is stormy' do
       allow(airport).to receive(:weather){:sunny}
       airport.land(plane)
       allow(airport).to receive(:weather){:stormy}
-      expect{airport.take_off(plane)}.to raise_error "planes can't take off when it's stormy"
+      expect{airport.request_to_take_off(plane)}.to raise_error "planes can't take off when it's stormy"
     end
 
   end
 end  
 
-
+# Note for refactoring:
+# before(:each) { allow(airport).to receive(:stormy?).and_return(false) }
+# ? need to change land(plane) to request_to_land(plane) in test suite (and the same for take_off)
