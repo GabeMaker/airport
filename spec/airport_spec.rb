@@ -48,7 +48,7 @@ describe Airport do
       airport.request_to_land(plane2)
       airport.request_to_take_off(plane)
       airport.request_to_take_off(plane2)
-      expect(airport.planes).to eq []
+      expect(airport.planes).to be_empty
     end
 
     it 'should let a plane take_off while others stay landed' do

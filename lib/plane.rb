@@ -14,4 +14,7 @@ class Plane
     self.flying = false
   end
 
+  def flying?
+    flying
+  end
 end
